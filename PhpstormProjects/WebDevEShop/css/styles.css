@@ -1,0 +1,11 @@
+header{
+    background-color: lavender;
+}
+header h1{
+    text-align: center;
+
+}
+#loginButtons {
+    display: block;
+    float: right;
+}
