@@ -1,0 +1,18 @@
+create database eshop;
+-- use the correct DB
+use eshop;
+-- create the table
+create table if not exists personnel (
+    id integer primary key AUTO_INCREMENT,
+    username text not null,
+    password text not null,
+    email text,
+    telephone int,
+    usertype text
+);
+-- add an administrator
+insert into personnel values(null,'cristian','cristian','b00122691@student.itb.ie', 666777888, 'admin');
+
+-- add a staff member
+insert into personnel values(null,'miguel','miguel','b00122692@student.itb.ie', 888777666, 'staff');
+
