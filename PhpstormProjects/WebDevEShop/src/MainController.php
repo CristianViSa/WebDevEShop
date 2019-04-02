@@ -10,8 +10,14 @@ namespace Tudublin;
 
 class MainController
 {
+    private $personnelRepository;
+    private $sessionManager;
+    private $username;
+
     public function __construct()
     {
+        $this->personnelRepository = new PersonnelRepository();
+        $this->sessionManager = new SessionManager();
     }
 
     public function showHome(){
