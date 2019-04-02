@@ -42,6 +42,29 @@ class MainController
 
     }
     public function processRegister(){
+        $username = filter_input(INPUT_POST, 'username');
+        $password = filter_input(INPUT_POST, 'password');
+        $email = filter_input(INPUT_POST, 'email');
+        $telephone = filter_input(INPUT_POST, 'telephone');
+        $userType = 'user';
+
+        $personnel = new Personnel();
+        $personnel->setUsername($username);
+        $personnel->setPassword($password);
+        $personnel->setEmail($email);
+        $personnel->setTelephone($telephone);
+        $personnel->setUserType($userType);
+
+        $id = $this->personnelRepository->create($personnel);
+
+        if($id > -1){
+            $message = "User $username, $password has been registered";
+            require_once __DIR__ . '/../templates/message.php';
+        } else {
+            $message = "error creating new user";
+            require_once __DIR__ . '/../templates/error.php';
+
+        }
 
     }
 

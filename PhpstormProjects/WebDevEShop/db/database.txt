@@ -4,12 +4,13 @@ use eshop;
 -- create the table
 create table if not exists personnel (
     id integer primary key AUTO_INCREMENT,
-    username text not null,
+    username varchar(18) not null ,
     password text not null,
     email text,
     telephone int,
     usertype text
 );
+
 -- add an administrator
 insert into personnel values(null,'cristian','cristian','b00122691@student.itb.ie', 666777888, 'admin');
 

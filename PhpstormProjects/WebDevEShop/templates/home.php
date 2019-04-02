@@ -1,6 +1,5 @@
 <?php
     namespace Tudublin;
-    require_once __DIR__ . "/../src/functions.php";
 ?>
 
 <!DOCTYPE html>
