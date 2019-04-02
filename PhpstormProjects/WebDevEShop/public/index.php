@@ -24,10 +24,7 @@
             $mainController->showRegisterForm();
             break;
         case "login":
-            $peronellRepository = new \Tudublin\PersonnelRepository();
-            $personell = $peronellRepository->getAll();
-            var_dump($personell);
-            //$mainController->showLoginForm();
+            $mainController->showLoginForm();
             break;
         case "about":
             $mainController->showAbout();

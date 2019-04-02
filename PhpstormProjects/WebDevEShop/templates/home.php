@@ -14,12 +14,21 @@
     </head>
     <body>
         <header>
-            <?php showHeader();?>
+            <?php
+            require_once __DIR__ . '/../templates/header.php';
+            ?>
         </header>
         <nav>
-            <?php showNav();?>
+            <?php
+            require_once __DIR__ . '/../templates/nav.php';
+            ?>
         </nav>
 
+        <footer>
 
+            <?php
+            require_once __DIR__ . '/../templates/footer.php';
+            ?>
+        </footer>
     </body>
 </html>

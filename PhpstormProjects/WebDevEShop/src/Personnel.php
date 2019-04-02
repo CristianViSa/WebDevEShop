@@ -114,5 +114,24 @@ class Personnel
         $this->userType = $userType;
     }
 
+    public function isAdmin(){
+        if ($this->userType == 'admin'){
+            return true;
+        }
+        return false;
+    }
 
+    public function isStaff(){
+        if($this->userType == 'staff'){
+            return true;
+        }
+        return false;
+    }
+
+    public function isUser(){
+        if($this->userType == 'user'){
+            return true;
+        }
+        return false;
+    }
 }

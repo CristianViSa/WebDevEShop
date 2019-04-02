@@ -8,6 +8,12 @@
     </style>
 </head>
 <body>
+    <header>
+        <?php require_once __DIR__ . "/../templates/header.php"?>
+    </header>
+    <nav>
+        <?php require_once __DIR__ . "/../templates/nav.php"?>
+    </nav>
     <fieldset>
         <legend>Register Form</legend>
         <form action="index.php" method="post">
@@ -34,5 +40,8 @@
             </div>
         </form>
     </fieldset>
+    <footer>
+        <?php require_once __DIR__ . "/../templates/footer.php"?>
+    </footer>
 </body>
 </html>
