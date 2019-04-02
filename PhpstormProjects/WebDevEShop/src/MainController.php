@@ -21,14 +21,20 @@ class MainController
     }
 
     public function showHome(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
         require_once __DIR__ . "/../templates/home.php";
     }
 
     public function showRegisterForm(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
         require_once __DIR__ . "/../templates/registerForm.php";
     }
 
     public function showLoginForm(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
         require_once __DIR__ . "/../templates/loginForm.php";
     }
 
@@ -40,6 +46,30 @@ class MainController
     }
 
     public function processLogin(){
+        $this->username = filter_input(INPUT_POST, 'username');
+        $password = filter_input(INPUT_POST, 'password');
 
+        if ($this->validLoginCredentials($this->username, $password)) {
+            $this->validLoginActions();
+        } else {
+            $message = 'invalid login credentials - try again';
+            require_once __DIR__ . '/../templates/error.php';
+        }
+
+    }
+
+    private function validLoginActions()
+    {
+        $this->sessionManager->storeUsername($this->username);
+        $this->showHome();
+    }
+
+    private function validLoginCredentials($username, $password)
+    {
+        if ($this->personnelRepository->existsPersonnel($username, $password)) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -27,7 +27,7 @@
                 <input type="password" name="password" required>
             </div>
             <div>
-                <input type="submit" value="Register">
+                <input type="submit" value="Login">
                 <input type="reset" value="Reset">
             </div>
         </form>

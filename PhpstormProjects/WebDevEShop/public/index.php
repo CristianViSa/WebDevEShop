@@ -26,6 +26,10 @@
         case "login":
             $mainController->showLoginForm();
             break;
+        case 'logout':
+            unset($_SESSION['username']);
+            $mainController->showHome();
+            break;
         case "about":
             $mainController->showAbout();
             break;

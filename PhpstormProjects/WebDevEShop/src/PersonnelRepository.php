@@ -10,6 +10,7 @@ namespace Tudublin;
 
 
 use Mattsmithdev\PdoCrudRepo\DatabaseTableRepository;
+use Mattsmithdev\PdoCrudRepo\DatabaseManager;
 
 class PersonnelRepository extends DatabaseTableRepository
 {
