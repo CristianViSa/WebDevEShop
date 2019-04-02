@@ -13,9 +13,13 @@
         </style>
     </head>
     <body>
-        <h1>Welcome to the Tudublin smartphone´s shop</h1>
-        <p>This web page is only for registered users</p>
-        <a href="index.php?action=login">Clic here to login</a>
-        <a href="index.php?action=register">Clic here to register</a>
+        <header>
+            <?php showHeader();?>
+        </header>
+        <nav>
+            <?php showNav();?>
+        </nav>
+
+
     </body>
 </html>
