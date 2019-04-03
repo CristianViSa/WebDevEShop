@@ -11,12 +11,14 @@ namespace Tudublin;
 class MainController
 {
     private $personnelRepository;
+    private $smartphoneRepository;
     private $sessionManager;
     private $username;
 
     public function __construct()
     {
         $this->personnelRepository = new PersonnelRepository();
+        $this->smartphoneRepository = new SmartphoneRepository();
         $this->sessionManager = new SessionManager();
     }
 
@@ -37,7 +39,10 @@ class MainController
         $username = $this->sessionManager->usernameFromSession();
         require_once __DIR__ . "/../templates/loginForm.php";
     }
-
+    public function showStore(){
+        $smartphones = $this->smartphoneRepository->getAll();
+        require_once __DIR__ . "/../templates/store.php";
+    }
     public function showAbout(){
 
     }
