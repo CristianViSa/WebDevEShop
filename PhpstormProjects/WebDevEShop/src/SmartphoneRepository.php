@@ -19,6 +19,27 @@ class SmartphoneRepository extends DatabaseTableRepository
         parent::__construct("Tudublin", "Smartphone", "Smartphone");
     }
 
+    public function updateStore($id, $store){
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+
+        $sql = "Update Smartphone Set store='$store' Where id='$id'  LIMIT 1";
+
+        $stmt = $connection->query($sql);
+    }
+
+
+    public function updatePrice($id, $price){
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+
+        $sql = "Update Smartphone Set price='$price' Where id='$id'  LIMIT 1";
+
+        $stmt = $connection->query($sql);
+    }
+
     public function buyPhone($id){
         $db = new DatabaseManager();
         $connection = $db->getDbh();

@@ -42,9 +42,28 @@
         case "processRegister":
             $mainController->processRegister();
             break;
+        case "updateSmartphone":
+            $id = filter_input(INPUT_GET, "id");
+            $mainController->updateSmartphone($id);
+            break;
+        case "processUpdateStock":
+            $id = filter_input(INPUT_POST, "id");
+            $mainController->processUpdateStock($id);
+            break;
+        case "processUpdatePrice":
+            $id = filter_input(INPUT_POST, "id");
+            $mainController->processUpdatePrice($id);
+            break;
         case "buy":
             $id = filter_input(INPUT_GET, "id");
             $mainController->buyPhone($id);
+            break;
+        case "manageUsers":
+            $mainController->showUsers();
+            break;
+        case "deleteUser":
+            $id = filter_input(INPUT_GET, "id");
+            $mainController->deleteUser($id);
             break;
         default:
             $mainController->showHome();

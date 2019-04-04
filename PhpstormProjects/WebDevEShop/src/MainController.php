@@ -50,6 +50,15 @@ class MainController
         $usertype = $this->sessionManager->userTypeFromSession();
         require_once __DIR__ . "/../templates/smartphonesStore.php";
     }
+
+    public function showUsers(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
+        $personell = $this->personnelRepository->getAll();
+        $usertype = $this->sessionManager->userTypeFromSession();
+        require_once __DIR__ . "/../templates/manageUsers.php";
+    }
+
     public function showAbout(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         $username = $this->sessionManager->usernameFromSession();
@@ -57,7 +66,49 @@ class MainController
         require_once __DIR__ . "/../templates/about.php";
 
     }
+
+    public function updateSmartphone($id){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
+        $usertype = $this->sessionManager->userTypeFromSession();
+        $smartphones = $this->smartphoneRepository->getAll();
+        require_once __DIR__ . "/../templates/updateSmartphoneForm.php";
+    }
+
+    public function deleteUser($id){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
+        $usertype = $this->sessionManager->userTypeFromSession();
+        $this->personnelRepository->delete($id);
+
+        $message = "The user with id ($id) has been Deleted";
+        require_once __DIR__ . '/../templates/message.php';
+    }
+
+    public function processUpdateStock($id){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
+        $usertype = $this->sessionManager->userTypeFromSession();
+        $stock = filter_input(INPUT_POST, 'stock');
+        $this->smartphoneRepository->updateStore($id, $stock);
+
+        $message = "The phone with id ($id) stock has been updated";
+        require_once __DIR__ . '/../templates/message.php';
+    }
+
+
+    public function processUpdatePrice($id){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
+        $usertype = $this->sessionManager->userTypeFromSession();
+        $price = filter_input(INPUT_POST, 'price');
+        $this->smartphoneRepository->updatePrice($id, $price);
+
+        $message = "The phone with id ($id) price has been updated";
+        require_once __DIR__ . '/../templates/message.php';
+    }
     public function processRegister(){
+
         $username = filter_input(INPUT_POST, 'username');
         $password = filter_input(INPUT_POST, 'password');
         $email = filter_input(INPUT_POST, 'email');
@@ -72,7 +123,7 @@ class MainController
         $personnel->setUsertype($userType);
 
         $id = $this->personnelRepository->create($personnel);
-
+        $usertype = $this->sessionManager->userTypeFromSession();
         if($id > -1){
             $message = "User $username, $password has been registered";
             require_once __DIR__ . '/../templates/message.php';
@@ -87,7 +138,7 @@ class MainController
     public function processLogin(){
         $this->username = filter_input(INPUT_POST, 'username');
         $password = filter_input(INPUT_POST, 'password');
-
+        $usertype = $this->sessionManager->userTypeFromSession();
         if ($this->validLoginCredentials($this->username, $password)) {
             $this->validLoginActions();
         } else {
@@ -115,6 +166,8 @@ class MainController
     }
 
     public function buyPhone($id){
+
+        $usertype = $this->sessionManager->userTypeFromSession();
         if($this->smartphoneRepository->buyPhone($id)){
             $message = "Your shop has been processed";
             require_once __DIR__ . '/../templates/message.php';
