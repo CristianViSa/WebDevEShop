@@ -25,18 +25,21 @@ class MainController
     public function showHome(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         $username = $this->sessionManager->usernameFromSession();
+        $usertype = $this->sessionManager->userTypeFromSession();
         require_once __DIR__ . "/../templates/home.php";
     }
 
     public function showRegisterForm(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         $username = $this->sessionManager->usernameFromSession();
+        $usertype = $this->sessionManager->userTypeFromSession();
         require_once __DIR__ . "/../templates/registerForm.php";
     }
 
     public function showLoginForm(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         $username = $this->sessionManager->usernameFromSession();
+        $usertype = $this->sessionManager->userTypeFromSession();
         require_once __DIR__ . "/../templates/loginForm.php";
     }
     public function showStore(){
@@ -48,6 +51,10 @@ class MainController
         require_once __DIR__ . "/../templates/smartphonesStore.php";
     }
     public function showAbout(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
+        $usertype = $this->sessionManager->userTypeFromSession();
+        require_once __DIR__ . "/../templates/about.php";
 
     }
     public function processRegister(){
