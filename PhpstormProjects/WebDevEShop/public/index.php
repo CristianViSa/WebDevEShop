@@ -27,6 +27,7 @@
             break;
         case 'logout':
             unset($_SESSION['username']);
+            unset($_SESSION['userType']);
             $mainController->showHome();
             break;
         case "about":
@@ -40,6 +41,10 @@
             break;
         case "processRegister":
             $mainController->processRegister();
+            break;
+        case "buy":
+            $id = filter_input(INPUT_GET, "id");
+            $mainController->buyPhone($id);
             break;
         default:
             $mainController->showHome();

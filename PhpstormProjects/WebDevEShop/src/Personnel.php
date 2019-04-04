@@ -16,7 +16,7 @@ class Personnel
     private $password;
     private $email;
     private $telephone;
-    private $userType;
+    private $usertype;
 
     /**
      * @return int
@@ -101,35 +101,35 @@ class Personnel
     /**
      * @return mixed
      */
-    public function getUserType()
+    public function getUsertype()
     {
-        return $this->userType;
+        return $this->usertype;
     }
 
     /**
-     * @param mixed $userType
+     * @param mixed $usertype
      */
-    public function setUserType($userType)
+    public function setUsertype($usertype)
     {
-        $this->userType = $userType;
+        $this->usertype = $usertype;
     }
 
     public function isAdmin(){
-        if ($this->userType == 'admin'){
+        if ($this->usertype == 'admin'){
             return true;
         }
         return false;
     }
 
     public function isStaff(){
-        if($this->userType == 'staff'){
+        if($this->usertype == 'staff'){
             return true;
         }
         return false;
     }
 
     public function isUser(){
-        if($this->userType == 'user'){
+        if($this->usertype == 'user'){
             return true;
         }
         return false;

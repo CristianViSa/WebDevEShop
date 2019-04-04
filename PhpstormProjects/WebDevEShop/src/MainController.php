@@ -40,8 +40,12 @@ class MainController
         require_once __DIR__ . "/../templates/loginForm.php";
     }
     public function showStore(){
+
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        $username = $this->sessionManager->usernameFromSession();
         $smartphones = $this->smartphoneRepository->getAll();
-        require_once __DIR__ . "/../templates/store.php";
+        $usertype = $this->sessionManager->userTypeFromSession();
+        require_once __DIR__ . "/../templates/smartphonesStore.php";
     }
     public function showAbout(){
 
@@ -58,7 +62,7 @@ class MainController
         $personnel->setPassword($password);
         $personnel->setEmail($email);
         $personnel->setTelephone($telephone);
-        $personnel->setUserType($userType);
+        $personnel->setUsertype($userType);
 
         $id = $this->personnelRepository->create($personnel);
 
@@ -89,6 +93,8 @@ class MainController
     private function validLoginActions()
     {
         $this->sessionManager->storeUsername($this->username);
+        $type = $this->personnelRepository->typeOfPersonnel($this->username);
+        $this->sessionManager->storeUserType($type);
         $this->showHome();
     }
 
@@ -99,5 +105,16 @@ class MainController
         }
 
         return false;
+    }
+
+    public function buyPhone($id){
+        if($this->smartphoneRepository->buyPhone($id)){
+            $message = "Your shop has been processed";
+            require_once __DIR__ . '/../templates/message.php';
+        }
+        else{
+            $message = "Sorry, there was a problem with your shop.";
+            require_once __DIR__ . '/../templates/message.php';
+        }
     }
 }

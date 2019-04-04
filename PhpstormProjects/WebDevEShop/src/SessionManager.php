@@ -27,6 +27,10 @@ class SessionManager
         $_SESSION['username'] = $username;
     }
 
+    public function storeUserType($userType)
+    {
+        $_SESSION['userType'] = $userType;
+    }
     /**
      * return string - username if in session
      * else return FALSE
@@ -40,6 +44,14 @@ class SessionManager
         }
     }
 
+    public function userTypeFromSession()
+    {
+        if(isset($_SESSION['userType'])){
+            return $_SESSION['userType'];
+        } else {
+            return false;
+        }
+    }
 
 
 }

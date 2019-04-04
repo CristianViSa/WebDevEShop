@@ -18,6 +18,25 @@ class PersonnelRepository extends DatabaseTableRepository
     {
         parent::__construct("Tudublin", "Personnel", "personnel");
     }
+    public function typeOfPersonnel($username){
+        $user = $this->getPersonnelUsername($username);
+        if($user){
+            return $user->getUserType();
+
+        }
+    }
+    public function getPersonnelUsername($username){
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+        $sql = "SELECT * FROM personnel WHERE username = '$username' LIMIT 1";
+
+        $stmt = $connection->query($sql);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, '\Tudublin\Personnel');
+        $user = $stmt->fetch();
+        return $user;
+
+    }
 
     public function existsPersonnel($username, $password)
     {
