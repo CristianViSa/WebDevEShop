@@ -1,4 +1,13 @@
-
+<?php
+    $usertype = '';
+    $username = '';
+    if(isset($_SESSION['userType'])) {
+        $usertype = $_SESSION['userType'];
+    }
+if(isset($_SESSION['username'])) {
+    $username = $_SESSION['username'];
+}
+?>
 <?php
 if(isset($isLoggedin) && $isLoggedin):
     ?>

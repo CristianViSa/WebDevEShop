@@ -54,9 +54,17 @@
             $id = filter_input(INPUT_POST, "id");
             $mainController->processUpdatePrice($id);
             break;
+        case "details":
+            $id = filter_input(INPUT_GET, "id");
+            $mainController->showDetails($id);
+            break;
         case "buy":
             $id = filter_input(INPUT_GET, "id");
             $mainController->buyPhone($id);
+            break;
+        case "deleteSmartphone":
+            $id = filter_input(INPUT_GET, "id");
+            $mainController->deleteSmartphone($id);
             break;
         case "manageUsers":
             $mainController->showUsers();
@@ -64,6 +72,26 @@
         case "deleteUser":
             $id = filter_input(INPUT_GET, "id");
             $mainController->deleteUser($id);
+            break;
+        case "updatePersonnel":
+            $id = filter_input(INPUT_GET, "id");
+            $mainController->updatePersonnel($id);
+            break;
+        case "processUpdateUsertype":
+            $id = filter_input(INPUT_POST, "id");
+            $mainController->processUpdateUsertype($id);
+            break;
+        case "addSmartphone":
+            $mainController->showNewSmartphoneForm();
+            break;
+        case "processAddSmartphone":
+            $mainController->addSmartphone();
+            break;
+        case "addStaff":
+            $mainController->showNewStaffForm();
+            break;
+        case "processAddStaff":
+            $mainController->addStaff();
             break;
         default:
             $mainController->showHome();

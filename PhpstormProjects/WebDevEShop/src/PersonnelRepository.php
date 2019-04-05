@@ -56,4 +56,15 @@ class PersonnelRepository extends DatabaseTableRepository
             return false;
         }
     }
+
+
+    public function updateUsertype($id, $usertype){
+        $db = new DatabaseManager();
+        $connection = $db->getDbh();
+
+
+        $sql = "Update Personnel Set usertype='$usertype' Where id='$id'  LIMIT 1";
+        $stmt = $connection->query($sql);
+        $stmt->setFetchMode(\PDO::FETCH_CLASS, '\Tudublin\Personnel');
+    }
 }

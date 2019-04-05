@@ -27,6 +27,7 @@ namespace Tudublin;
         <th> Email </th>
         <th> User Type </th>
         <th> Delete </th>
+        <th> Update Type </th>
 
     </tr>
 
@@ -44,12 +45,23 @@ namespace Tudublin;
                     <input type = "submit" value = "Delete" name = "submit" >
                 </form>
             </td>
+            <td>
+                <form method = "post" action = "index.php?action=updatePersonnel&id=<?=$user->getId();?>">
+                    <input type = "submit" value = "Update type" name = "submit" >
+                </form>
+            </td>
         </tr>
 
     <?php
     endforeach;
     ?>
-
+</table>
+<table>
+    <td>
+        <form method = "post" action = "index.php?action=addStaff">
+            <input type = "submit" value = "Add new staff" name = "submit" >
+        </form>
+    </td>
 </table>
 </body>
 <footer>

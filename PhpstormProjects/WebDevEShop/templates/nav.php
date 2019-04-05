@@ -1,4 +1,9 @@
-
+<?php
+    $usertype = '';
+    if(isset($_SESSION['userType'])) {
+        $usertype = $_SESSION['userType'];
+    }
+?>
 <ul>
     <li><a href="index.php">Home</a></li>
     <li><a href="index.php?action=about">About Us</a></li>
