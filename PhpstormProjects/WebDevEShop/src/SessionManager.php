@@ -13,13 +13,11 @@ class SessionManager
 {
     public function isLoggedIn()
     {
-        if(isset($_SESSION['username'])){
+        if(isset($_SESSION['username']) and isset($_SESSION['userType'])){
             return true;
         } else {
             return false;
         }
-
-//        return isset($_SESSION['username']);
     }
 
     public function storeUsername($username)

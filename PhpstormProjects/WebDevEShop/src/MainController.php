@@ -44,7 +44,6 @@ class MainController
         require_once __DIR__ . "/../templates/loginForm.php";
     }
     public function showStore(){
-
         $isLoggedin = $this->sessionManager->isLoggedIn();
         $username = $this->sessionManager->usernameFromSession();
         $smartphones = $this->smartphoneRepository->getAll();
@@ -53,9 +52,15 @@ class MainController
 
     public function showUsers(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        $personell = $this->personnelRepository->getAll();
-        require_once __DIR__ . "/../templates/manageUsers.php";
+        if($isLoggedin and $this->sessionManager->userTypeFromSession()== 'admin') {
+            $username = $this->sessionManager->usernameFromSession();
+            $personell = $this->personnelRepository->getAll();
+            require_once __DIR__ . "/../templates/manageUsers.php";
+        }
+        else{
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . "/../templates/message.php";
+            }
     }
 
     public function showAbout(){
@@ -67,74 +72,129 @@ class MainController
 
     public function showDetails($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        $smartphone = $this->smartphoneRepository->getOneById($id);
-        require_once __DIR__ . "/../templates/smartphoneDetails.php";
+        if($isLoggedin) {
+            $username = $this->sessionManager->usernameFromSession();
+            $smartphone = $this->smartphoneRepository->getOneById($id);
+            require_once __DIR__ . "/../templates/smartphoneDetails.php";
+        }else {
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . '/../templates/message.php';
+        }
 
     }
-    public function showNewSmartphoneForm(){
+    public function showNewSmartphoneForm()
+    {
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        require_once __DIR__ . "/../templates/addSmartphoneForm.php";
+        if ($isLoggedin and $this->sessionManager->userTypeFromSession() != 'user'){
+            $username = $this->sessionManager->usernameFromSession();
+            require_once __DIR__ . "/../templates/addSmartphoneForm.php";
+        }else {
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . '/../templates/message.php';
+        }
     }
 
     public function showNewStaffForm(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        require_once __DIR__ . "/../templates/addStaffForm.php";
+        if ($isLoggedin and $this->sessionManager->userTypeFromSession() == 'admin') {
+            $username = $this->sessionManager->usernameFromSession();
+            require_once __DIR__ . "/../templates/addStaffForm.php";
+        }else {
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . '/../templates/message.php';
+        }
+
     }
 
     public function updateSmartphone($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        $smartphones = $this->smartphoneRepository->getAll();
-        require_once __DIR__ . "/../templates/updateSmartphoneForm.php";
+        if($isLoggedin and $this->sessionManager->userTypeFromSession()!= 'user') {
+            $smartphones = $this->smartphoneRepository->getAll();
+            require_once __DIR__ . "/../templates/updateSmartphoneForm.php";
+        }
+        else{
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . '/../templates/message.php';
+        }
     }
 
     public function updatePersonnel($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        require_once __DIR__ . "/../templates/updatePersonnelForm.php";
+        if($isLoggedin and $this->sessionManager->userTypeFromSession() == 'admin') {
+            $username = $this->sessionManager->usernameFromSession();
+            require_once __DIR__ . "/../templates/updatePersonnelForm.php";
+        }
+        else{
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . "/../templates/message.php";
+        }
     }
 
     public function deleteUser($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        $this->personnelRepository->delete($id);
+        if($isLoggedin and $this->sessionManager->userTypeFromSession()== 'admin'){
+            $username = $this->sessionManager->usernameFromSession();
+            $this->personnelRepository->delete($id);
 
-        $message = "The user with id ($id) has been Deleted";
-        require_once __DIR__ . '/../templates/message.php';
+            $message = "The user with id ($id) has been Deleted";
+            require_once __DIR__ . '/../templates/message.php';
+        }
     }
 
-    public function processUpdateStock($id){
+    public function processUpdateStock($id)
+    {
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        $stock = filter_input(INPUT_POST, 'stock');
-        $this->smartphoneRepository->updateStore($id, $stock);
-
-        $message = "The phone with id ($id) stock has been updated";
-        require_once __DIR__ . '/../templates/message.php';
+        if ($isLoggedin and $this->sessionManager->userTypeFromSession()!= 'user'){
+            $username = $this->sessionManager->usernameFromSession();
+            $stock = filter_input(INPUT_POST, 'stock');
+            if ($this->smartphoneRepository->updateStore($id, $stock)) {
+                $message = "The phone with id ($id) stock has been updated";
+            } else {
+                $message = "There were some problems updating the stock";
+            }
+            require_once __DIR__ . '/../templates/message.php';
+        }else{
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . '/../templates/message.php';
+        }
     }
 
     public function processUpdateUsertype($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        $newUsertype = filter_input(INPUT_POST, 'userType');
-        $this->personnelRepository->updateUsertype($id, $newUsertype);
-
-        $message = "The user with id ($id) type has been updated";
-        require_once __DIR__ . '/../templates/message.php';
+        if($isLoggedin) {
+            $username = $this->sessionManager->usernameFromSession();
+            $newUsertype = filter_input(INPUT_POST, 'userType');
+            if ($this->personnelRepository->updateUsertype($id, $newUsertype)) {
+                $message = "The user with id ($id) type has been updated";
+            } else {
+                $message = "Sorry, there were some problems updating the usertype";
+            }
+            require_once __DIR__ . '/../templates/message.php';
+        }else{
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . '/../templates/message.php';
+        }
     }
     public function processUpdatePrice($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        $price = filter_input(INPUT_POST, 'price');
-        $this->smartphoneRepository->updatePrice($id, $price);
-
-        $message = "The phone with id ($id) price has been updated";
-        require_once __DIR__ . '/../templates/message.php';
+        if($isLoggedin and $this->sessionManager->userTypeFromSession()!= 'user') {
+            $username = $this->sessionManager->usernameFromSession();
+            $price = filter_input(INPUT_POST, 'price');
+            if ($this->smartphoneRepository->updatePrice($id, $price)) {
+                $message = "The phone with id ($id) price has been updated";
+            } else {
+                $message = "Sorry, there were some problems updating the price";
+            }
+            require_once __DIR__ . '/../templates/message.php';
+        }
+        else{
+            $message = "Sorry, you need special privileges to do this";
+            require_once __DIR__ . '/../templates/message.php';
+        }
     }
     public function processRegister(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+
 
         $username = filter_input(INPUT_POST, 'username');
         $password = filter_input(INPUT_POST, 'password');
@@ -162,6 +222,7 @@ class MainController
     }
 
     public function processLogin(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
         $this->username = filter_input(INPUT_POST, 'username');
         $password = filter_input(INPUT_POST, 'password');
         if ($this->validLoginCredentials($this->username, $password)) {
@@ -191,80 +252,97 @@ class MainController
     }
 
     public function buyPhone($id){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        if($isLoggedin) {
+            if ($this->smartphoneRepository->buyPhone($id)) {
+                $message = "Your shop has been processed";
 
-        if($this->smartphoneRepository->buyPhone($id)){
-            $message = "Your shop has been processed";
+            } else {
+                $message = "Sorry, there was a problem with your shop.";
+            }
             require_once __DIR__ . '/../templates/message.php';
         }
         else{
-            $message = "Sorry, there was a problem with your shop.";
+            $message = "Sorry, you need to be loged in to buy a phone";
             require_once __DIR__ . '/../templates/message.php';
         }
     }
 
     public function deleteSmartphone($id){
-
-        if($this->smartphoneRepository->delete($id)){
-            $message = "Smartphone with id ($id) has been deleted";
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        if($isLoggedin and $this->sessionManager->userTypeFromSession()!= 'user') {
+            if ($this->smartphoneRepository->delete($id)) {
+                $message = "Smartphone with id ($id) has been deleted";
+            } else {
+                $message = "Sorry, there was a problem with the delete.";
+            }
             require_once __DIR__ . '/../templates/message.php';
         }
         else{
-            $message = "Sorry, there was a problem with the delete.";
+            $message = "Sorry, you need to be loged in to buy a phone";
             require_once __DIR__ . '/../templates/message.php';
         }
     }
 
     public function addSmartphone(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        if ($isLoggedin and $this->sessionManager->userTypeFromSession()!= 'user') {
+            $name = filter_input(INPUT_POST, 'name');
+            $stock = filter_input(INPUT_POST, 'store');
+            $price = filter_input(INPUT_POST, 'price');
+            $photo = filter_input(INPUT_POST, 'photo');
 
-        $name = filter_input(INPUT_POST, 'name');
-        $stock = filter_input(INPUT_POST, 'store');
-        $price = filter_input(INPUT_POST, 'price');
-        $photo = filter_input(INPUT_POST, 'photo');
+            $smartphone = new Smartphone();
+            $smartphone->setName($name);
+            $smartphone->setStore($stock);
+            $smartphone->setPrice($price);
+            $smartphone->setPhoto($photo);
 
-        $smartphone = new Smartphone();
-        $smartphone->setName($name);
-        $smartphone->setStore($stock);
-        $smartphone->setPrice($price);
-        $smartphone->setPhoto($photo);
+            $id = $this->smartphoneRepository->create($smartphone);
+            if ($id > -1) {
+                $message = "Smartphone $name , has been registered";
+                require_once __DIR__ . '/../templates/message.php';
+            } else {
+                $message = "error creating new smartphone";
+                require_once __DIR__ . '/../templates/error.php';
 
-        $id = $this->smartphoneRepository->create($smartphone);
-        if($id > -1){
-            $message = "Smartphone $name , has been registered";
+            }
+        }else{
+            $message = "Sorry, you need to be loged in to buy a phone";
             require_once __DIR__ . '/../templates/message.php';
-        } else {
-            $message = "error creating new smartphone";
-            require_once __DIR__ . '/../templates/error.php';
-
         }
 
     }
 
     public function addStaff(){
+        $isLoggedin = $this->sessionManager->isLoggedIn();
+        if ($isLoggedin and $this->sessionManager->userTypeFromSession()== 'admin') {
+            $username = filter_input(INPUT_POST, 'username');
+            $password = filter_input(INPUT_POST, 'password');
+            $email = filter_input(INPUT_POST, 'email');
+            $telephone = filter_input(INPUT_POST, 'telephone');
+            $userType = 'staff';
 
-        $username = filter_input(INPUT_POST, 'username');
-        $password = filter_input(INPUT_POST, 'password');
-        $email = filter_input(INPUT_POST, 'email');
-        $telephone = filter_input(INPUT_POST, 'telephone');
-        $userType = 'staff';
+            $personnel = new Personnel();
+            $personnel->setUsername($username);
+            $personnel->setPassword($password);
+            $personnel->setEmail($email);
+            $personnel->setTelephone($telephone);
+            $personnel->setUsertype($userType);
 
-        $personnel = new Personnel();
-        $personnel->setUsername($username);
-        $personnel->setPassword($password);
-        $personnel->setEmail($email);
-        $personnel->setTelephone($telephone);
-        $personnel->setUsertype($userType);
+            $id = $this->personnelRepository->create($personnel);
+            if ($id > -1) {
+                $message = "User $username, $password has been registered";
+                require_once __DIR__ . '/../templates/message.php';
+            } else {
+                $message = "error creating new user";
+                require_once __DIR__ . '/../templates/error.php';
 
-        $id = $this->personnelRepository->create($personnel);
-        if($id > -1){
-            $message = "User $username, $password has been registered";
+            }
+        }else{
+            $message = "Sorry, you need to be loged in to buy a phone";
             require_once __DIR__ . '/../templates/message.php';
-        } else {
-            $message = "error creating new user";
-            require_once __DIR__ . '/../templates/error.php';
-
         }
 
     }
-
-
 }
