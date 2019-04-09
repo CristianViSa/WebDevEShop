@@ -25,8 +25,11 @@ class SmartphoneRepository extends DatabaseTableRepository
 
 
         $sql = "Update Smartphone Set store='$store' Where id='$id'  LIMIT 1";
-
         $stmt = $connection->query($sql);
+        if ($stmt){
+            return true;
+        }
+        return false;
     }
 
 
@@ -38,6 +41,10 @@ class SmartphoneRepository extends DatabaseTableRepository
         $sql = "Update Smartphone Set price='$price' Where id='$id'  LIMIT 1";
 
         $stmt = $connection->query($sql);
+        if ($stmt){
+            return true;
+        }
+        return false;
     }
 
     public function buyPhone($id){

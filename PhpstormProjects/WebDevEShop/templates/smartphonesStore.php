@@ -1,6 +1,9 @@
 <?php
 namespace Tudublin;
-
+$usertype = '';
+if(isset($_SESSION['userType'])) {
+    $usertype = $_SESSION['userType'];
+}
 ?>
 <head>
     <style>

@@ -14,7 +14,6 @@ class MainController
     private $smartphoneRepository;
     private $sessionManager;
     private $username;
-    private $usertype;
 
     public function __construct()
     {
@@ -27,25 +26,20 @@ class MainController
     }
     public function showHome(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
-        $usertype = $this->sessionManager->userTypeFromSession();
         require_once __DIR__ . "/../templates/home.php";
     }
 
     public function showRegisterForm(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
         require_once __DIR__ . "/../templates/registerForm.php";
     }
 
     public function showLoginForm(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
         require_once __DIR__ . "/../templates/loginForm.php";
     }
     public function showStore(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
         $smartphones = $this->smartphoneRepository->getAll();
         require_once __DIR__ . "/../templates/smartphonesStore.php";
     }
@@ -53,7 +47,6 @@ class MainController
     public function showUsers(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if($isLoggedin and $this->sessionManager->userTypeFromSession()== 'admin') {
-            $username = $this->sessionManager->usernameFromSession();
             $personell = $this->personnelRepository->getAll();
             require_once __DIR__ . "/../templates/manageUsers.php";
         }
@@ -65,7 +58,6 @@ class MainController
 
     public function showAbout(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-        $username = $this->sessionManager->usernameFromSession();
         require_once __DIR__ . "/../templates/about.php";
 
     }
@@ -73,7 +65,6 @@ class MainController
     public function showDetails($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if($isLoggedin) {
-            $username = $this->sessionManager->usernameFromSession();
             $smartphone = $this->smartphoneRepository->getOneById($id);
             require_once __DIR__ . "/../templates/smartphoneDetails.php";
         }else {
@@ -86,7 +77,6 @@ class MainController
     {
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if ($isLoggedin and $this->sessionManager->userTypeFromSession() != 'user'){
-            $username = $this->sessionManager->usernameFromSession();
             require_once __DIR__ . "/../templates/addSmartphoneForm.php";
         }else {
             $message = "Sorry, you need special privileges to do this";
@@ -97,7 +87,6 @@ class MainController
     public function showNewStaffForm(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if ($isLoggedin and $this->sessionManager->userTypeFromSession() == 'admin') {
-            $username = $this->sessionManager->usernameFromSession();
             require_once __DIR__ . "/../templates/addStaffForm.php";
         }else {
             $message = "Sorry, you need special privileges to do this";
@@ -121,7 +110,6 @@ class MainController
     public function updatePersonnel($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if($isLoggedin and $this->sessionManager->userTypeFromSession() == 'admin') {
-            $username = $this->sessionManager->usernameFromSession();
             require_once __DIR__ . "/../templates/updatePersonnelForm.php";
         }
         else{
@@ -133,11 +121,12 @@ class MainController
     public function deleteUser($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if($isLoggedin and $this->sessionManager->userTypeFromSession()== 'admin'){
-            $username = $this->sessionManager->usernameFromSession();
-            $this->personnelRepository->delete($id);
-
-            $message = "The user with id ($id) has been Deleted";
-            require_once __DIR__ . '/../templates/message.php';
+            if($this->personnelRepository->delete($id)) {
+                $message = "The user with id ($id) has been Deleted";
+                require_once __DIR__ . '/../templates/message.php';
+            }else {
+                $message = "There were some problems deleting the user";
+            }
         }
     }
 
@@ -145,7 +134,6 @@ class MainController
     {
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if ($isLoggedin and $this->sessionManager->userTypeFromSession()!= 'user'){
-            $username = $this->sessionManager->usernameFromSession();
             $stock = filter_input(INPUT_POST, 'stock');
             if ($this->smartphoneRepository->updateStore($id, $stock)) {
                 $message = "The phone with id ($id) stock has been updated";
@@ -162,7 +150,6 @@ class MainController
     public function processUpdateUsertype($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if($isLoggedin) {
-            $username = $this->sessionManager->usernameFromSession();
             $newUsertype = filter_input(INPUT_POST, 'userType');
             if ($this->personnelRepository->updateUsertype($id, $newUsertype)) {
                 $message = "The user with id ($id) type has been updated";
@@ -178,7 +165,6 @@ class MainController
     public function processUpdatePrice($id){
         $isLoggedin = $this->sessionManager->isLoggedIn();
         if($isLoggedin and $this->sessionManager->userTypeFromSession()!= 'user') {
-            $username = $this->sessionManager->usernameFromSession();
             $price = filter_input(INPUT_POST, 'price');
             if ($this->smartphoneRepository->updatePrice($id, $price)) {
                 $message = "The phone with id ($id) price has been updated";
@@ -194,7 +180,6 @@ class MainController
     }
     public function processRegister(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
-
 
         $username = filter_input(INPUT_POST, 'username');
         $password = filter_input(INPUT_POST, 'password');
@@ -223,6 +208,7 @@ class MainController
 
     public function processLogin(){
         $isLoggedin = $this->sessionManager->isLoggedIn();
+
         $this->username = filter_input(INPUT_POST, 'username');
         $password = filter_input(INPUT_POST, 'password');
         if ($this->validLoginCredentials($this->username, $password)) {

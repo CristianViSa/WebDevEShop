@@ -65,6 +65,9 @@ class PersonnelRepository extends DatabaseTableRepository
 
         $sql = "Update Personnel Set usertype='$usertype' Where id='$id'  LIMIT 1";
         $stmt = $connection->query($sql);
-        $stmt->setFetchMode(\PDO::FETCH_CLASS, '\Tudublin\Personnel');
+        if ($stmt){
+            return true;
+        }
+        return false;
     }
 }
