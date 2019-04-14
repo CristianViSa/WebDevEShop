@@ -1,7 +1,3 @@
 
 <hr>
-back to
-
-<a href="index.php">
-    home page
-</a>
+&copy; Cristian Villarroya Sanchez 2019

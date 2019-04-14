@@ -23,7 +23,8 @@
             require_once __DIR__ . '/../templates/nav.php';
             ?>
         </nav>
-
+        <h2>This is the TU Dublin smartphone shop.</h2>
+        <p>To buy a phone you must be logged in, if  you do not have an account, you can register easily.
         <footer>
 
             <?php

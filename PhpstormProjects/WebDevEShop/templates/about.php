@@ -19,12 +19,13 @@
     require_once __DIR__ . "/../templates/nav.php";
     ?>
 </nav>
-<h1>About us</h1>
+<h2>About us</h2>
 
 
 <p>
     This web page has been made by Cristian Villarroya Sanchez for the module Web Development Server Side. 2019
 </p>
+<p><a href="mailto:b00122691@student.itb.ie">Email me</a>
 <footer>
     <?php
     require_once __DIR__ . "/../templates/footer.php";

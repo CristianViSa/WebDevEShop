@@ -1,7 +1,7 @@
 header{
     background-color: lavender;
 }
-header h1{
+h1,h2,p{
     text-align: center;
 
 }
