@@ -102,7 +102,7 @@ class Smartphone
     }
 
     public function addPhone(){
-        $this->store = $this->store - 1;
+        $this->store = $this->store + 1;
     }
 
     public function __toString()

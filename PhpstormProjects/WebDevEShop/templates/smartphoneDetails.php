@@ -34,8 +34,8 @@ namespace Tudublin;
             <td>
                 <?php
                 $source = __DIR__ . '\\img\\' . $smartphone->getPhoto();
+                echo "<img src=$source height=100 width=100>";
                 ?>
-                <img src="<?php echo$source; ?>" height="100" width="100"/>
             </td>
             <td>
                 <form method = "post" action = "index.php?action=buy&id=<?=$smartphone->getId();?>">
