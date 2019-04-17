@@ -85,7 +85,7 @@ if(isset($_SESSION['userType'])) {
     if($usertype == 'admin' or $usertype == 'staff'):
         ?><td>
         <form method = "post" action = "index.php?action=addSmartphone">
-            <input type = "submit" value = "Add new Smartphone" name = "submit" >
+            <input type = "submit" value = "Add new Smartphone" name = "submit">
         </form>
         </td>
     <?php endif; ?>

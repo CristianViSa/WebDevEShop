@@ -8,3 +8,14 @@ actor_suffix: Tester
 extensions:
     enabled:
         - Codeception\Extension\RunFailed
+modules:
+    enabled:
+        - Db:
+              dsn: 'mysql:host=localhost;dbname=eshop'
+              user: 'root'
+              password: 'root'
+              dump: 'tests/_data/dump.sql'
+              populate: true
+              cleanup: true
+              reconnect: true
+              waitlock: 10

@@ -1,0 +1,213 @@
+<head>
+    <style>
+        header{
+    background-color: lavender;
+}
+h1,h2,p{
+    text-align: center;
+
+}
+#loginButtons {
+    display: block;
+    float: right;
+}
+
+/*Style for the unordered list*/
+nav ul {
+    list-style-type: none;/*Removes the bullets of the ul*/
+    margin: 0;
+    padding: 0;
+    display: flex; /*Makes a flex box*/
+    flex-wrap: wrap;/*Wrap elements if it is necesary*/
+    display: -webkit-flex; /*Chrome version fixer*/
+    -webkit-flex-wrap: wrap;/*Chrome version fixer*/
+}
+/*Style for the elements of the ul*/
+nav ul li{
+    flex: 1 0 200px;/*Flex items giving them the same size, no shrink items and basis size is 200px */
+    -webkit-flex: 1 0 200px;/*Flex items giving them the same size, no shrink items and basis size is 200px */
+    margin: 0;
+    padding: 0;
+    color: black;
+    text-shadow: 1px 1px 5px black;/*Adds a black shadow*/
+    width: 100%;
+}
+
+/*Style for the links*/
+nav ul li a:link{
+    display: block;/*Display elemts as block elemnts*/
+    background-color:  #dedddd;
+    text-decoration: none;/*Removes the underline*/
+    padding: 0.15em;
+    margin: 0.1em;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    font-size: 1.2em;
+}
+
+/*Style for the visitesd links*/
+nav ul li a:visited{
+    text-decoration: none; /*To be equal as not visited*/
+    display: block;
+    background-color:  #dedddd;
+    color: black;
+}
+
+/*Style for the links while hovering the mouse*/
+nav ul li a:hover{
+    text-decoration: none;/*Removes the underline*/
+    color: white; /*With this 2 lines,revert the color and background color*/
+    background-color: #090080;
+}
+    </style>
+</head>
+<header>
+        <div id="headerH1">
+        <h1>Tudublin smartphone´s shop</h1>
+    </div>
+    <div id="headerLogin">
+        You are logged in as: <strong> cristian </strong>
+        <br>
+        <a href="index.php?action=logout">logout</a>
+    </div>
+<hr>
+</header>
+<nav>
+    <ul>
+    <li><a href="index.php">Home</a></li>
+    <li><a href="index.php?action=about">About Us</a></li>
+    <li><a href="index.php?action=store">Store</a></li>
+    <li><a href="index.php?action=login">Login</a></li>
+    <li><a href="index.php?action=register">Register</a></li>
+            <li><a href="index.php?action=manageUsers">Manage Users</a></li>
+    </ul></nav>
+<body>
+
+<h2>Lists of Smartphones</h2>
+<table>
+    <tr>
+        <th> Name </th>
+        <th> Store </th>
+                    <th> Buy </th>
+                            <th> Update </th>
+                            <th> Delete </th>
+        
+    </tr>
+
+    
+        <tr>
+            <td>Huawei p10</td>
+            <td> 288</td>
+            <td>
+                        <form method = "post" action = "index.php?action=details&id=1">
+                            <input type = "submit" value = "Buy" name = "submit" >
+                        </form>
+                    </td>
+                        <td>
+                <form method="post" action="index.php?action=updateSmartphone&id=1">
+                    <input type="submit" value="Update" name="submit">
+                </form>
+                </td>
+                        <td>
+                <form method="post" action="index.php?action=deleteSmartphone&id=1">
+                    <input type="submit" value="Delete" name="submit">
+                </form>
+                </td>
+                    </tr>
+
+    
+        <tr>
+            <td>Iphone X</td>
+            <td> 20</td>
+            <td>
+                        <form method = "post" action = "index.php?action=details&id=2">
+                            <input type = "submit" value = "Buy" name = "submit" >
+                        </form>
+                    </td>
+                        <td>
+                <form method="post" action="index.php?action=updateSmartphone&id=2">
+                    <input type="submit" value="Update" name="submit">
+                </form>
+                </td>
+                        <td>
+                <form method="post" action="index.php?action=deleteSmartphone&id=2">
+                    <input type="submit" value="Delete" name="submit">
+                </form>
+                </td>
+                    </tr>
+
+    
+        <tr>
+            <td>Xiaomi Mi 6</td>
+            <td> 300</td>
+            <td>
+                        <form method = "post" action = "index.php?action=details&id=3">
+                            <input type = "submit" value = "Buy" name = "submit" >
+                        </form>
+                    </td>
+                        <td>
+                <form method="post" action="index.php?action=updateSmartphone&id=3">
+                    <input type="submit" value="Update" name="submit">
+                </form>
+                </td>
+                        <td>
+                <form method="post" action="index.php?action=deleteSmartphone&id=3">
+                    <input type="submit" value="Delete" name="submit">
+                </form>
+                </td>
+                    </tr>
+
+    
+        <tr>
+            <td>Samsung Galaxy S8</td>
+            <td> 100</td>
+            <td>
+                        <form method = "post" action = "index.php?action=details&id=4">
+                            <input type = "submit" value = "Buy" name = "submit" >
+                        </form>
+                    </td>
+                        <td>
+                <form method="post" action="index.php?action=updateSmartphone&id=4">
+                    <input type="submit" value="Update" name="submit">
+                </form>
+                </td>
+                        <td>
+                <form method="post" action="index.php?action=deleteSmartphone&id=4">
+                    <input type="submit" value="Delete" name="submit">
+                </form>
+                </td>
+                    </tr>
+
+    
+        <tr>
+            <td>Sony Xperia XZ</td>
+            <td> 50</td>
+            <td>
+                        <form method = "post" action = "index.php?action=details&id=5">
+                            <input type = "submit" value = "Buy" name = "submit" >
+                        </form>
+                    </td>
+                        <td>
+                <form method="post" action="index.php?action=updateSmartphone&id=5">
+                    <input type="submit" value="Update" name="submit">
+                </form>
+                </td>
+                        <td>
+                <form method="post" action="index.php?action=deleteSmartphone&id=5">
+                    <input type="submit" value="Delete" name="submit">
+                </form>
+                </td>
+                    </tr>
+
+        <td>
+        <form method = "post" action = "index.php?action=addSmartphone">
+            <input type = "submit" value = "Add new Smartphone" name = "submit">
+        </form>
+        </td>
+    </table>
+</body>
+<footer>
+    
+<hr>
+&copy; Cristian Villarroya Sanchez 2019
+</footer>

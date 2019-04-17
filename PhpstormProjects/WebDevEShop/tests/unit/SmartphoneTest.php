@@ -50,4 +50,8 @@ class SmartphoneTest extends \Codeception\Test\Unit
         $this->Smartphone->buyPhone();
         $this->assertEquals($expected, $this->Smartphone->getStore());
     }
+
+    public function testInvalidParameters(){
+
+    }
 }
