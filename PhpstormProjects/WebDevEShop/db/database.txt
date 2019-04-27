@@ -22,7 +22,7 @@ create table if not exists Smartphone (
 insert into personnel values(null,'cristian','cristian','b00122691@student.itb.ie', 666777888, 'admin');
 
 -- add a staff member
-insert into personnel values(null,'miguel','miguel','b00122692@student.itb.ie', 888777666, 'staff');
+insert into personnel values(null,'miguel','miguel','b00122691@s.ie', 888777666, 'staff');
 
 insert into Smartphone values(null,"Huawei p10", 288, 200, "huaweip10.jpg");
 insert into Smartphone values(null,"Iphone X", 20, 1000, "iPhonex.jpg");

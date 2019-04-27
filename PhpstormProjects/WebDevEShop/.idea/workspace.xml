@@ -14,15 +14,6 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/codeception.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="53" selection-start-line="13" selection-start-column="53" selection-end-line="13" selection-end-column="53" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PersonnelRepository.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="714">
@@ -50,14 +41,27 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sources.txt">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="255">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/database.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="215">
+              <caret line="24" column="63" lean-forward="true" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/header.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+            <state relative-caret-position="17">
+              <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -154,7 +158,6 @@
         <option value="$PROJECT_DIR$/templates/home.php" />
         <option value="$PROJECT_DIR$/templates/loginForm.php" />
         <option value="$PROJECT_DIR$/templates/smartphonesStore.php" />
-        <option value="$PROJECT_DIR$/db/database.txt" />
         <option value="$PROJECT_DIR$/tests/acceptance/HomePageCest.php" />
         <option value="$PROJECT_DIR$/codeception.yml" />
         <option value="$PROJECT_DIR$/tests/_data/dump.sql" />
@@ -162,6 +165,8 @@
         <option value="$PROJECT_DIR$/tests/acceptance/CreateRecordsCest.php" />
         <option value="$PROJECT_DIR$/templates/smartphoneDetails.php" />
         <option value="$PROJECT_DIR$/templates/header.php" />
+        <option value="$PROJECT_DIR$/sources.txt" />
+        <option value="$PROJECT_DIR$/db/database.txt" />
       </list>
     </option>
   </component>
@@ -239,18 +244,12 @@
             <path>
               <item name="WebDevEShop" type="b2602c69:ProjectViewProjectNode" />
               <item name="WebDevEShop" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
+              <item name="db" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WebDevEShop" type="b2602c69:ProjectViewProjectNode" />
               <item name="WebDevEShop" type="462c0819:PsiDirectoryNode" />
               <item name="public" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="WebDevEShop" type="b2602c69:ProjectViewProjectNode" />
-              <item name="WebDevEShop" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="img" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="WebDevEShop" type="b2602c69:ProjectViewProjectNode" />
@@ -323,12 +322,12 @@
       <workItem from="1554816799143" duration="4697000" />
       <workItem from="1555239505333" duration="7135000" />
       <workItem from="1555520608890" duration="9442000" />
-      <workItem from="1556368410473" duration="2266000" />
+      <workItem from="1556368410473" duration="2551000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="74115000" />
+    <option name="totallyTimeSpent" value="74400000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -343,7 +342,7 @@
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19062027" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19062027" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -356,7 +355,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32405892" />
+      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32405892" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -565,13 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/database.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="19" lean-forward="true" selection-start-column="19" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/addSmartphoneForm.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="504">
@@ -661,9 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sources.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/smartphoneDetails.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="136">
@@ -673,8 +662,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/header.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="27" column="35" selection-start-line="27" selection-start-column="35" selection-end-line="27" selection-end-column="35" />
+        <state relative-caret-position="17">
+          <caret line="14" column="43" lean-forward="true" selection-start-line="14" selection-start-column="43" selection-end-line="14" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sources.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/database.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="24" column="63" lean-forward="true" selection-start-line="24" selection-start-column="63" selection-end-line="24" selection-end-column="63" />
         </state>
       </provider>
     </entry>
