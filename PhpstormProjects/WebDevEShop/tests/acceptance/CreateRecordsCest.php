@@ -85,4 +85,11 @@ class CreateRecordsCest
 
         $I->see('Huawei p10');
     }
+
+    public function providerCreateSmartphone()
+    {
+        return [
+            ['Smartphone1', 287, 200,"photo1.jpg", 6],
+        ];
+    }
 }

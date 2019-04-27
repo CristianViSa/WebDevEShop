@@ -15,7 +15,7 @@ class PrivilegesCest
         $I->amOnPage('/index.php?action=updatePersonnel');
         $I->see("Sorry, you need special privileges to do this");
 
-        //Admin can manage users 
+        //Admin can manage users
         $I->click('logout');
         $I->click('login');
         $I->fillField('username','cristian');
